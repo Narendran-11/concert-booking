@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family:'Poppins';
+    background:linear-gradient(135deg,#000,#1e3c72);
+    color:white;
+    text-align:center;
+}
+
+/* CARD */
+.box {
+    margin:50px auto;
+    padding:30px;
+    width:350px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+}
+
+/* IMAGE */
+.artist {
+    width:100%;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Booking Confirmed</h1>
+
+<div class="box">
+
+<img class="artist" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Anirudh_Ravichander.jpg">
+
+<h2>{{ booking.name }}</h2>
+
+<p>🎟 {{ booking.ticket }}</p>
+<p>💺 {{ booking.seat }}</p>
+<p>₹{{ booking.price }}</p>
+
+<h3>Scan QR</h3>
+<img src="/{{ qr }}" width="180">
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Anirudh Concert</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family:'Poppins';
+    background: radial-gradient(circle,#0f172a,#000);
+    color:white;
+}
+
+/* HERO */
+.hero {
+    text-align:center;
+    padding:80px;
+    background: linear-gradient(45deg,#ff416c,#ff4b2b);
+}
+
+/* FORM */
+.form-box {
+    margin:-50px auto;
+    padding:30px;
+    width:380px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+}
+
+input, textarea {
+    width:90%;
+    padding:10px;
+    margin:10px;
+    border-radius:10px;
+    border:none;
+}
+
+/* SEATS */
+.seats button {
+    margin:5px;
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* TICKETS */
+.card {
+    display:inline-block;
+    padding:15px;
+    margin:8px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.silver {background:#94a3b8;}
+.gold {background:#f59e0b;}
+.platinum {background:#a855f7;}
+.vip {background:#ef4444;}
+
+.selected {
+    border:3px solid white;
+}
+
+/* SUBMIT */
+.submit-btn {
+    margin-top:15px;
+    padding:12px;
+    width:90%;
+    border:none;
+    border-radius:10px;
+    background:#ff4b2b;
+    color:white;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+<h1>🎤 ANIRUDH LIVE</h1>
+<p>Feel the music</p>
+</div>
+
+<form action="/checkout" method="POST">
+<div class="form-box">
+
+<input name="name" placeholder="Name" required>
+<input name="email" placeholder="Email">
+<input name="phone" placeholder="Phone">
+<textarea name="address" placeholder="Address"></textarea>
+
+<h3>Select Seat</h3>
+<div class="seats">
+<button type="button" onclick="setSeat('A1')">A1</button>
+<button type="button" onclick="setSeat('A2')">A2</button>
+<button type="button" onclick="setSeat('B1')">B1</button>
+<button type="button" onclick="setSeat('B2')">B2</button>
+</div>
+
+<input type="hidden" name="seat" id="seat">
+
+<h3>Select Ticket</h3>
+
+<div class="card silver" onclick="setTicket('Silver',3000,this)">Silver ₹3000</div>
+<div class="card gold" onclick="setTicket('Gold',5000,this)">Gold ₹5000</div>
+<div class="card platinum" onclick="setTicket('Platinum',8000,this)">Platinum ₹8000</div>
+<div class="card vip" onclick="setTicket('VIP',12000,this)">VIP ₹12000</div>
+
+<input type="hidden" name="ticket" id="ticket">
+<input type="hidden" name="price" id="price">
+
+<button class="submit-btn">Book Ticket</button>
+
+</div>
+</form>
+
+<script>
+function setSeat(s){
+    document.getElementById("seat").value = s;
+}
+
+function setTicket(type,price,el){
+    document.getElementById("ticket").value = type;
+    document.getElementById("price").value = price;
+
+    document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+</script>
+
+</body>
+</html>

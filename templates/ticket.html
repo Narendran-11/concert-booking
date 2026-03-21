@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background:black;
+    color:white;
+    font-family:'Poppins';
+    text-align:center;
+}
+
+.ticket {
+    margin:50px auto;
+    padding:30px;
+    width:320px;
+    border-radius:20px;
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+    box-shadow:0 0 30px red;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow:0 0 10px red; }
+    to { box-shadow:0 0 40px red; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎫 ENTRY PASS</h1>
+
+<div class="ticket">
+<h2>{{ booking.name }}</h2>
+<hr>
+<p>🎤 Anirudh Live</p>
+<p>🎟 {{ booking.ticket }}</p>
+<p>💺 {{ booking.seat }}</p>
+<p>₹{{ booking.price }}</p>
+</div>
+
+<br>
+
+<a href="/download/{{ booking._id }}">
+<button style="padding:10px;border-radius:10px;">Download PDF</button>
+</a>
+
+</body>
+</html>

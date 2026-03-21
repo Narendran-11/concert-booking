@@ -1,0 +1,23 @@
+<h1>Admin Dashboard</h1>
+
+<img src="/{{ graph }}" width="400">
+
+<table border="1">
+<tr>
+<th>Name</th><th>Ticket</th><th>Action</th>
+</tr>
+
+{% for u in data %}
+<tr>
+<td>{{ u.name }}</td>
+<td>{{ u.ticket }}</td>
+<td>
+<a href="/edit/{{ u._id }}">Edit</a> |
+<a href="/delete/{{ u._id }}">Delete</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<a href="/logout">Logout</a>
