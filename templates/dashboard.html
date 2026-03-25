@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family:Poppins; background:#020617; color:white; text-align:center;">
+
+<h1>📊 Admin Dashboard</h1>
+
+<a href="/logout">Logout</a>
+
+<table border="1" style="margin:auto; margin-top:20px;">
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Ticket</th>
+<th>Seat</th>
+<th>Price</th>
+</tr>
+
+{% for b in bookings %}
+<tr>
+<td>{{ b.name }}</td>
+<td>{{ b.email }}</td>
+<td>{{ b.ticket }}</td>
+<td>{{ b.seat }}</td>
+<td>{{ b.price }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>

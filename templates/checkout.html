@@ -1,49 +1,201 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Booking Confirmed</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
 <style>
+
 body {
+    margin:0;
     font-family:'Poppins';
-    background:linear-gradient(135deg,#000,#1e3c72);
+    background:#0a0f1c;
     color:white;
-    text-align:center;
+}
+
+/* CENTER */
+.wrapper {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
 
 /* CARD */
-.box {
-    margin:50px auto;
-    padding:30px;
-    width:350px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter: blur(20px);
+.card {
+    width:420px;
+    padding:25px;
+    border-radius:18px;
+    position:relative;
+
+    background: linear-gradient(145deg,#111827,#1f2937);
+    box-shadow:0 12px 40px rgba(0,0,0,0.8);
+
+    animation: fadeUp 0.8s ease;
 }
 
-/* IMAGE */
-.artist {
-    width:100%;
-    border-radius:15px;
+/* 🎟 TICKET CUT EDGES */
+.card::before,
+.card::after {
+    content:"";
+    position:absolute;
+    width:30px;
+    height:30px;
+    background:#0a0f1c;
+    border-radius:50%;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.card::before {
+    left:-15px;
+}
+
+.card::after {
+    right:-15px;
+}
+
+/* HEADER */
+.header {
+    text-align:center;
     margin-bottom:15px;
 }
+
+.header h1 {
+    color:#22c55e;
+    font-size:24px;
+    margin:0;
+}
+
+.header p {
+    color:#9ca3af;
+    font-size:13px;
+}
+
+/* VERIFIED BADGE */
+.badge {
+    display:inline-block;
+    margin-top:8px;
+    padding:5px 12px;
+    background:#16a34a;
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* EVENT BOX */
+.event {
+    background:#020617;
+    padding:12px;
+    border-radius:10px;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.event p {
+    margin:5px 0;
+}
+
+/* INFO */
+.info {
+    margin:20px 0;
+}
+
+.info p {
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px dashed rgba(255,255,255,0.2); /* ticket style line */
+    font-size:14px;
+}
+
+.info span:first-child {
+    color:#9ca3af;
+}
+
+/* QR */
+.qr {
+    display:block;
+    margin:20px auto;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+/* BUTTONS */
+.btn {
+    display:block;
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    text-align:center;
+    text-decoration:none;
+}
+
+.btn.secondary {
+    background:#374151;
+}
+
+.btn:hover {
+    opacity:0.9;
+}
+
+/* ✨ ANIMATION */
+@keyframes fadeUp {
+    from {
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🎉 Booking Confirmed</h1>
+<div class="wrapper">
 
-<div class="box">
+<div class="card">
 
-<img class="artist" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Anirudh_Ravichander.jpg">
+<div class="header">
+<h1>Booking Confirmed</h1>
+<p>Your ticket has been successfully booked</p>
 
-<h2>{{ booking.name }}</h2>
+<div class="badge">✔ Verified Ticket</div>
+</div>
 
-<p>🎟 {{ booking.ticket }}</p>
-<p>💺 {{ booking.seat }}</p>
-<p>₹{{ booking.price }}</p>
+<!-- EVENT DETAILS -->
+<div class="event">
+<p><b>🎤 Event:</b> Anirudh Live Concert</p>
+<p><b>📍 Venue:</b> Palace Grounds, Bengaluru</p>
+<p><b>⏰ Time:</b> 7:00 PM</p>
+</div>
 
-<h3>Scan QR</h3>
-<img src="/{{ qr }}" width="180">
+<!-- BOOKING INFO -->
+<div class="info">
+<p><span>Booking ID</span> <span>{{ booking._id }}</span></p>
+<p><span>Name</span> <span>{{ booking.name }}</span></p>
+<p><span>Ticket</span> <span>{{ booking.ticket }}</span></p>
+<p><span>Seat</span> <span>{{ booking.seat }}</span></p>
+<p><span>Amount</span> <span>₹{{ booking.price }}</span></p>
+</div>
+
+<!-- QR -->
+<img class="qr" src="/{{ qr }}" width="160">
+
+<a href="/ticket/{{ booking._id }}" class="btn">View Ticket</a>
+<a href="/download/{{ booking._id }}" class="btn secondary">Download PDF</a>
+
+</div>
 
 </div>
 

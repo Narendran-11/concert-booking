@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmed</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background: #111;
+            color: white;
+        }
+
+        .box {
+            margin-top: 100px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: red;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>🎉 Booking Confirmed!</h1>
+    <h2>Thank you, {{ name }}!</h2>
+
+    <a href="{{ pdf }}" download>
+        <button>🎟 Download Your Ticket</button>
+    </a>
+</div>
+
+</body>
+</html>

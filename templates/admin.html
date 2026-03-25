@@ -1,23 +1,14 @@
-<h1>Admin Dashboard</h1>
+<!DOCTYPE html>
+<html>
+<body style="text-align:center; font-family:Poppins; background:#0f172a; color:white;">
 
-<img src="/{{ graph }}" width="400">
+<h1>Admin Login</h1>
 
-<table border="1">
-<tr>
-<th>Name</th><th>Ticket</th><th>Action</th>
-</tr>
+<form method="POST">
+<input name="username" placeholder="Username"><br><br>
+<input name="password" type="password" placeholder="Password"><br><br>
+<button>Login</button>
+</form>
 
-{% for u in data %}
-<tr>
-<td>{{ u.name }}</td>
-<td>{{ u.ticket }}</td>
-<td>
-<a href="/edit/{{ u._id }}">Edit</a> |
-<a href="/delete/{{ u._id }}">Delete</a>
-</td>
-</tr>
-{% endfor %}
-
-</table>
-
-<a href="/logout">Logout</a>
+</body>
+</html>

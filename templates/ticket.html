@@ -1,49 +1,161 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>VIP Pass</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
 <style>
-body {
-    background:black;
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
     color:white;
-    font-family:'Poppins';
-    text-align:center;
+
+    background:url("/static/anirudh_ticket.jpg") no-repeat center/cover;
 }
 
-.ticket {
-    margin:50px auto;
-    padding:30px;
-    width:320px;
+/* DARK OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+/* MAIN CARD */
+.pass{
+    width:360px;
+    margin:40px auto;
     border-radius:20px;
-    background:linear-gradient(45deg,#ff416c,#ff4b2b);
-    box-shadow:0 0 30px red;
-    animation: glow 2s infinite alternate;
+    overflow:hidden;
+    box-shadow:0 0 40px rgba(0,0,0,0.9);
+    border:2px solid gold;
+    animation:fadeIn 1s ease;
 }
 
-@keyframes glow {
-    from { box-shadow:0 0 10px red; }
-    to { box-shadow:0 0 40px red; }
+/* IMAGE */
+.pass img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
 }
+
+/* VIP STRIP */
+.vip{
+    background:gold;
+    color:black;
+    text-align:center;
+    padding:10px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+/* CONTENT */
+.content{
+    padding:20px;
+    background:#000;
+}
+
+/* EVENT */
+.event{
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+/* DETAILS */
+.details p{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px dashed rgba(212,175,55,0.3);
+    font-size:14px;
+    color:#ddd;
+}
+
+/* 🔥 FIXED VISIBILITY */
+.details p span:last-child{
+    color:#ffffff;
+    font-weight:500;
+    text-align:right;
+    max-width:60%;
+    word-break:break-all;
+}
+
+/* QR */
+.qr{
+    text-align:center;
+    margin-top:20px;
+}
+
+.qr img{
+    width:170px;            /* bigger QR */
+    padding:10px;           /* space around QR */
+    background:white;       /* proper QR visibility */
+    border-radius:12px;
+
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    margin-top:15px;
+    font-size:12px;
+    color:#aaa;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🎫 ENTRY PASS</h1>
+<div class="pass">
 
-<div class="ticket">
-<h2>{{ booking.name }}</h2>
-<hr>
-<p>🎤 Anirudh Live</p>
-<p>🎟 {{ booking.ticket }}</p>
-<p>💺 {{ booking.seat }}</p>
-<p>₹{{ booking.price }}</p>
+    <!-- IMAGE -->
+    <img src="/static/anirudh_ticket.jpg">
+
+    <!-- VIP -->
+    <div class="vip">VIP ACCESS</div>
+
+    <div class="content">
+
+        <!-- EVENT -->
+        <div class="event">
+            📍 Palace Grounds, Bengaluru<br>
+            ⏰ 7:00 PM
+        </div>
+
+        <!-- DETAILS -->
+        <div class="details">
+            <p><span>Booking ID</span> <span>{{ booking._id }}</span></p>
+            <p><span>Name</span> <span>{{ booking.name }}</span></p>
+            <p><span>Seat</span> <span>{{ booking.seat }}</span></p>
+        </div>
+
+        <!-- QR -->
+        <div class="qr">
+            <img src="/static/qr_codes/{{ booking._id }}.png">
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            ✔ Verified Entry Pass<br>
+            Scan at Entry Only • Do not share
+        </div>
+
+    </div>
+
 </div>
-
-<br>
-
-<a href="/download/{{ booking._id }}">
-<button style="padding:10px;border-radius:10px;">Download PDF</button>
-</a>
 
 </body>
 </html>

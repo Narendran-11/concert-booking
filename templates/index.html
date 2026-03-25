@@ -2,33 +2,60 @@
 <html>
 <head>
 <title>Anirudh Concert</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
+
+/* BACKGROUND */
 body {
     margin:0;
     font-family:'Poppins';
-    background: radial-gradient(circle,#0f172a,#000);
     color:white;
+
+    background: url("{{ url_for('static', filename='anirudh.jpg') }}") no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+/* DARK OVERLAY */
+body::before {
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    top:0;
+    left:0;
+    z-index:-1;
 }
 
 /* HERO */
 .hero {
     text-align:center;
-    padding:80px;
-    background: linear-gradient(45deg,#ff416c,#ff4b2b);
+    padding:60px;
 }
 
-/* FORM */
+.hero h1 {
+    font-size:40px;
+    letter-spacing:2px;
+}
+
+/* GLASS FORM */
 .form-box {
-    margin:-50px auto;
+    margin:20px auto;
     padding:30px;
     width:380px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter: blur(15px);
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+
     border-radius:20px;
+    box-shadow:0 0 40px rgba(0,0,0,0.7);
+
+    border:1px solid rgba(255,255,255,0.2);
 }
 
+/* INPUTS */
 input, textarea {
     width:90%;
     padding:10px;
@@ -44,6 +71,14 @@ input, textarea {
     border:none;
     border-radius:8px;
     cursor:pointer;
+    background:#111;
+    color:white;
+    transition:0.3s;
+}
+
+.seats button:hover {
+    background:#ff4b2b;
+    transform:scale(1.1);
 }
 
 /* TICKETS */
@@ -53,6 +88,12 @@ input, textarea {
     margin:8px;
     border-radius:10px;
     cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.card:hover {
+    transform:scale(1.1);
 }
 
 .silver {background:#94a3b8;}
@@ -64,7 +105,7 @@ input, textarea {
     border:3px solid white;
 }
 
-/* SUBMIT */
+/* BUTTON */
 .submit-btn {
     margin-top:15px;
     padding:12px;
@@ -74,7 +115,13 @@ input, textarea {
     background:#ff4b2b;
     color:white;
     cursor:pointer;
+    font-size:16px;
 }
+
+.submit-btn:hover {
+    background:#ff1e00;
+}
+
 </style>
 </head>
 
@@ -82,13 +129,13 @@ input, textarea {
 
 <div class="hero">
 <h1>🎤 ANIRUDH LIVE</h1>
-<p>Feel the music</p>
+<p>Feel the music. Live the moment.</p>
 </div>
 
 <form action="/checkout" method="POST">
 <div class="form-box">
 
-<input name="name" placeholder="Name" required>
+<input name="name" placeholder="Full Name" required>
 <input name="email" placeholder="Email">
 <input name="phone" placeholder="Phone">
 <textarea name="address" placeholder="Address"></textarea>
